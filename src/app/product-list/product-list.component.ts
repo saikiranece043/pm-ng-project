@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../product';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -13,7 +14,10 @@ export class ProductListComponent implements OnInit {
   title: string = "Products List";
   imageStatus: boolean = false;
   filteredProducts: IProduct[];
+  products: IProduct[];
 
+
+  
     get filter(): string {
     return this._filter;
   }
@@ -29,37 +33,16 @@ export class ProductListComponent implements OnInit {
     return this.products.filter(p => p.productName.toLowerCase().indexOf(value.toLowerCase()) != -1);
   }
 
-  products: IProduct[] = [{
-    productName: "Hammer",
-    productCode: "abc-234",
-    productAvailable: "20-10-2018",
-    productPrice: "20.89",
-    productRating: "4",
-    productImage: "https://homepages.cae.wisc.edu/~ece533/images/airplane.png"
-  },
-  {
-    productName: "Axe",
-    productCode: "bcd-888",
-    productAvailable: "20-10-2018",
-    productPrice: "20.89",
-    productRating: "4",
-    productImage: "https://homepages.cae.wisc.edu/~ece533/images/girl.png"
-  },
-  {
-    productName: "Grater",
-    productCode: "zxy-237",
-    productAvailable: "20-10-2018",
-    productPrice: "20.89",
-    productRating: "4",
-    productImage: "https://homepages.cae.wisc.edu/~ece533/images/cat.png"
-  }
-
-  ]
-  constructor() { 
-    this.filteredProducts=this.products;
+  
+  constructor(private productService:ProductService) { 
+    
   }
 
   ngOnInit() {
+    this.productService.getProducts().subscribe( x => {
+      this.products =x;
+      this.filteredProducts=this.products;
+    }, err => console.log("Error in the component subscribing to Observable"));
   }
 
 

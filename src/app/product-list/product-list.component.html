@@ -1,13 +1,13 @@
-<div class="container">
+<div class="card ">
 
-  <div class="row">
-        <h2>{{title}}</h2>
+  <div class="card-header">
+        <h3>{{title}}</h3>
   </div>
 
   </div>
 
 
-  <div class="container">
+  <div class="card-body">
 
   <div class="row">
     <div class="col-md-2">
@@ -44,7 +44,7 @@
       <td><img [src]="product.productImage" alt="{{product.productName}}" *ngIf="imageStatus" [style.width.px]="width"></td>
       <td>{{product.productName}}</td>
       <td>{{product.productCode | converToSpaces :'-'}}</td>
-      <td>{{product.productAvailable}}</td>
+      <td>{{product.productAvailable | date}}</td>
       <td>{{product.productPrice | currency}}</td>
       <td>{{product.productRating}}</td>
     </tr>
