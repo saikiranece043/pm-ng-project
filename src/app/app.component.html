@@ -1,13 +1,24 @@
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <h1>{{title}}</h1>
-  </li>
+
+<div class="container"> 
+
+  <div class="align-center">
+<h1>{{title}}</h1>
+</div>
+<ul class="nav nav-pills nav-justified">
+
   <li class="nav-item">
     <a class="nav-link active" [routerLink]="['/home']">Home</a>
   </li>
   <li class="nav-item">
     <a class="nav-link active" [routerLink]="['/products']">ProductsList</a>
   </li>
+
+  <li class="nav-item">
+    <a class="nav-link active" [routerLink]="['/signup']">SignUp</a>
+
+  </li>
 </ul>
 
+
+</div>
 <router-outlet></router-outlet>

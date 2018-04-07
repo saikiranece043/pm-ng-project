@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
+import { IUser } from '../user';
 
 @Component({
   selector: 'app-users-list',
@@ -8,11 +9,33 @@ import { ProductService } from '../product.service';
 })
 export class UsersListComponent implements OnInit {
 
-  constructor(private productService:ProductService) { }
+
+  usersno;
+
+
+  clients = [];
+  constructor(private productService:ProductService) { 
+
+  }
+
+
+  loadUsers(){
+    this.productService.getresults(this.usersno).subscribe( d => {
+      this.clients=d;
+     
+    });
+  }
 
   ngOnInit() {
 
-    this.productService.getUsers().subscribe( user => console.log(user));
+  
+    this.productService.getresults(this.usersno).subscribe( d => {
+        this.clients=d;
+       
+      });
+   
+
+  
   }
 
 }
